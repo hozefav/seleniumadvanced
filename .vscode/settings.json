@@ -1,0 +1,17 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.test.config": [
+        {
+            "name": "Java Test",
+            "workingDirectory": "${workspaceFolder}",
+            "vmargs": [ "-Xmx512M", "--enable-preview"],
+            "env": {
+                "SELENIUM_URL": "http://jupiter2.cloud.planittesting.com",
+                "SELENIUM_BROWSER": "chrome",
+                "SELENIUM_WAIT": 1,
+                "SELENIUM_HEADLESS": "false"
+            }
+        }
+    ],
+    "java.jdt.ls.vmargs": "--enable-preview"
+}

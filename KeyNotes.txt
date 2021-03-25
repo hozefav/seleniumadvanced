@@ -1,0 +1,10 @@
+1) Never make driver static. Driver should be unique to each test.
+2) Classes should follow SOLID principes. No. 2 states Open-closed principle which means class should be open for extension but closed for modification.
+3) Static constructor when JVM starts. Before anything else happens.
+4) Always configure parameters like browsertype,Implicitwait,url as Environment variables and not as property file or xml. The reason is
+since we will be running as CICD, it is expected in 12Factor principles and best practices that CICD runs the code as it is. We should have to
+change the code in anyway.
+5) Inject dependencies by use of Constructors
+6) Do not use try catch to look for non-present webelements. Instead use findElements(By)
+   and assert zero length response
+7) Model and  tests should be separate. Your model should never import any JNIT or NUNIT classes.
