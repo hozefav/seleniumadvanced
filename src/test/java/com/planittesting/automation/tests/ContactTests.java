@@ -1,13 +1,15 @@
 package com.planittesting.automation.tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import com.planittesting.automation.model.data.ContactData;
 import com.planittesting.automation.model.pages.HomePage;
 import com.planittesting.automation.tests.dataProviders.CsvToContactData;
+import com.planittesting.automation.tests.dataProviders.DBContactDataProvider;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class ContactTests extends BaseTests {
@@ -54,6 +56,28 @@ public class ContactTests extends BaseTests {
         "florez,teacher,c@d.com,0415415415,world"
     })
     void validateSuccessfulSubmissionDataDrivenInline(@CsvToContactData ContactData contactData) {
+        var message = open(HomePage.class)
+            .clickContactMenu()
+            .setContactData(contactData)
+            .clickSubmitButton()
+            .getSuccessMessage();
+        assertEquals("Thanks "+contactData.forename()+", we appreciate your feedback.", message);
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/contact_data.csv",numLinesToSkip = 1)
+    void validateSuccessfulSubmissionDataDrivenFromFile(@CsvToContactData ContactData contactData) {
+        var message = open(HomePage.class)
+            .clickContactMenu()
+            .setContactData(contactData)
+            .clickSubmitButton()
+            .getSuccessMessage();
+        assertEquals("Thanks "+contactData.forename()+", we appreciate your feedback.", message);
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(DBContactDataProvider.class)
+    void validateSuccessfulSubmissionDataDrivenFromDB(ContactData contactData) {
         var message = open(HomePage.class)
             .clickContactMenu()
             .setContactData(contactData)

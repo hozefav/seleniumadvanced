@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import com.planittesting.automation.model.data.ContactData;
 
-public class ContactPage extends BasePage {
+public class ContactPage extends BasePage<ContactPage> {
 
     public ContactPage(WebDriver driver) {
         super(driver);

@@ -10,11 +10,15 @@ import com.planittesting.automation.environment.EnvironmentVariables;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.openqa.selenium.WebDriver;
 
 public abstract class BaseTests {
 
     protected WebDriver driver;
+
+    @RegisterExtension
+    AfterEachTestProcessor afterEachTestProcessor = new AfterEachTestProcessor();
 
     @BeforeEach
     public void setup() throws ReflectiveOperationException{
@@ -23,9 +27,10 @@ public abstract class BaseTests {
         var wait = EnvironmentVariables.getImplicitWait();
         var url = EnvironmentVariables.getUrl();
         var headless = EnvironmentVariables.isHeadless();
+        var gridUrl = EnvironmentVariables.getGridUrl();
         
         // Create driver
-        driver = new AbstractDriverFactory().withHeadless(headless).getInstance(browser);
+        driver = new AbstractDriverFactory().withGridUrl(gridUrl).withHeadless(headless).getInstance(browser);
         driver.manage().timeouts().implicitlyWait(wait,TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.navigate().to(url);
@@ -33,6 +38,8 @@ public abstract class BaseTests {
 
     @AfterEach
     public void shutdown(){
+        // Take screenshot on failure and quit driver.
+        afterEachTestProcessor.setDriver(driver);
         
     }
 

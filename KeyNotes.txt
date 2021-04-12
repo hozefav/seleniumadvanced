@@ -8,3 +8,21 @@ change the code in anyway.
 6) Do not use try catch to look for non-present webelements. Instead use findElements(By)
    and assert zero length response
 7) Model and  tests should be separate. Your model should never import any JNIT or NUNIT classes.
+8) While programming use features like JavaStream, lambda expresssion,Java generics etc. to make client feel confident that you have kept up with technology.
+9) Principle of single responsibility method. For e.g in a form, use individual set method for accessing each element/field of the form. Then you may call 
+all relevant set methods in a larger method to populate the form. This will help create multiple testcases for testing form.
+
+
+
+
+
+
+
+Imp video moments
+1) Day 1 part3 21:21 Usage of lamba expression in Webdriverwait.
+2) Day 2 part1 56:00 How webdriver instance is generated using reflections and smart coding
+3) Day 2 part2 25:30 how JavaStream works
+4) Day 2 part2 1:22:50 how dialog is handled when it pops out from a page. 
+
+//*[@id="nav-login"]/ng-login/a
+
