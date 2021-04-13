@@ -1,16 +1,16 @@
 node {
     properties([
         parameters([
-            string(name: 'SELENIUM_URL', defaultValue: 'http://jupiter2.cloud.planittesting.com'),
-            string(name: 'SELENIUM_BROWSER', defaultValue: 'chrome'),
+            string(name: 'SELENIUM_URL', defaultValue: 'http://automationpractice.com'),
+            string(name: 'SELENIUM_BROWSER', defaultValue: 'firefox'),
             string(name: 'SELENIUM_WAIT', defaultValue: '1'),
             string(name: 'SELENIUM_GRID_URL', defaultValue: 'http://selenium_hub:4444/wd/hub'),
-            string(name: 'SELENIUM_HEADLESS', defaultValue: 'true')
+            choice(name: 'SELENIUM_HEADLESS', choices: ['true'], defaultValue: 'true')
         ])
     ])
 
     checkout scm
-    def testImage = docker.build("automationjupiter-toysimage","./.devcontainer")
+    def testImage = docker.build("automationjupiter-toys-image","./.devcontainer")
     testImage.inside('--network=ci_planittesting -v $HOME/.m2:/root/.m2'){
 
         stage('prepare'){
