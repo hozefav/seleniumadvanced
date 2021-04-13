@@ -4,7 +4,7 @@ node {
             string(name: 'SELENIUM_URL',defaultValue: 'http://jupiter2.cloud.planittesting.com'),
             string(name: 'SELENIUM_BROWSER',defaultValue: 'chrome'),
             string(name: 'SELENIUM_WAIT',defaultValue: '1'),
-            string(name: 'SELENIUM_GRID_URL',defaultValue: 'http://selenium_hub:4444/wd/hub')
+            string(name: 'SELENIUM_GRID_URL',defaultValue: 'http://selenium_hub:4444/wd/hub'),
             string(name: 'SELENIUM_HEADLESS',defaultValue: 'true')
         ])
     ])
