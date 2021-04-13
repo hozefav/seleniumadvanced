@@ -11,6 +11,7 @@ change the code in anyway.
 8) While programming use features like JavaStream, lambda expresssion,Java generics etc. to make client feel confident that you have kept up with technology.
 9) Principle of single responsibility method. For e.g in a form, use individual set method for accessing each element/field of the form. Then you may call 
 all relevant set methods in a larger method to populate the form. This will help create multiple testcases for testing form.
+10)
 
 
 
